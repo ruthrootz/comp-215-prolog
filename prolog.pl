@@ -20,3 +20,6 @@ flatten1([[] | T], R) :- flatten1(T, R).
 % case: list head is a non-list element
 flatten1([X | T1], [X | T2]) :- flatten1(T1, T2).
 
+% flatten1([], []).
+% flatten1([X | _], X).
+% flatten1([X | T], R) :- flatten1(T, [R | X]).
