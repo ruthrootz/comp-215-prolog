@@ -21,6 +21,4 @@ flatten1([[] | T], R) :- flatten1(T, R).
 	% take X off list, add it to R, then call flatten1 again
 flatten1([X | T1], [X | R]) :- flatten1(T1, R).
 
-% flatten1([], []).
-% flatten1([X | _], X).
-% flatten1([X | T], R) :- flatten1(T, [R | X]).
+
