@@ -18,7 +18,8 @@ flatten1([[X | T1] | T2], R) :- flatten1([X | [T1 | T2]], R).
 % case: list head is an empty list
 flatten1([[] | T], R) :- flatten1(T, R).
 % case: list head is a non-list element
-flatten1([X | T1], [X | T2]) :- flatten1(T1, T2).
+	% take X off list, add it to R, then call flatten1 again
+flatten1([X | T1], [X | R]) :- flatten1(T1, R).
 
 % flatten1([], []).
 % flatten1([X | _], X).
