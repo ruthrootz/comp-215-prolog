@@ -4,7 +4,7 @@
 
 % if a list is empty, just return the result List
 append1([], List, List).
-% grab the head of the list and add it to the result R, then run append1 with the tail
+% grab the head of the list and add it to the result, then run append1 with the tail
 append1([X | Tail], List, [X | Result]) :- append1(Tail, List, Result).
 
 % if the search term and the head of the list match, exit
@@ -25,7 +25,7 @@ flatten1([[X | Tail1] | Tail2], Result) :- flatten1([X | [Tail1 | Tail2]], Resul
 flatten1([[] | Tail], Result) :- flatten1(Tail, Result).
 flatten1([[] | Tail], Result) :- flatten1(Tail, Result).
 % list head is a non-list element
-	% take X off list, add it to R, then run flatten1 again
+	% take X off list, add it to Result, then run flatten1 again
 flatten1([X | Tail], [X | Result]) :- flatten1(Tail, Result).
 
 % nothing left to zip, return empty list
