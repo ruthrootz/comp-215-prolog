@@ -4,8 +4,8 @@
 
 % if a list is empty, just return the result List
 append1([], List, List).
-% grab the head of the list and add it to the result R, then call append1 with the tail
-append1([X | Tail], List, [X | R]) :- append1(Tail, List, R).
+% grab the head of the list and add it to the result R, then run append1 with the tail
+append1([X | Tail], List, [X | Result]) :- append1(Tail, List, Result).
 
 % if the search term and the head of the list match, exit
 member1(X, [X | _]).
@@ -20,16 +20,18 @@ rest_list(X, [_ | Tail], Output) :- rest_list(X, Tail, Output).
 % list is empty, nothing else to do
 flatten1([], []).
 % list head is itself a list
-flatten1([[X | Tail1] | Tail2], R) :- flatten1([X | [Tail1 | Tail2]], R).
+flatten1([[X | Tail1] | Tail2], Result) :- flatten1([X | [Tail1 | Tail2]], Result).
 % list head is an empty list
-flatten1([[] | Tail], R) :- flatten1(Tail, R).
-flatten1([[] | Tail], R) :- flatten1(Tail, R).
+flatten1([[] | Tail], Result) :- flatten1(Tail, Result).
+flatten1([[] | Tail], Result) :- flatten1(Tail, Result).
 % list head is a non-list element
-	% take X off list, add it to R, then call flatten1 again
-flatten1([X | Tail], [X | R]) :- flatten1(Tail, R).
+	% take X off list, add it to R, then run flatten1 again
+flatten1([X | Tail], [X | Result]) :- flatten1(Tail, Result).
 
-% 
+% nothing left to zip, return empty list
 zip([], [], []).
+% next two facts: one of the lists is empty, return empty list
 zip([], _, []).
 zip(_, [], []).
-zip([X | Tail1], [Y | Tail2], [ X-Y | R]) :- zip(Tail1, Tail2, R).
+% take the head of each list and add them to result, then run zip with the tails
+zip([X | Tail1], [Y | Tail2], [ X-Y | Result]) :- zip(Tail1, Tail2, Result).
